@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./styles/RegisterForm.css";
 
-const RegisterForm = ({ onClose }) => {
+const RegisterForm = () => {
   return (
     <div className="overlay">
       <div className="form-container">
@@ -11,9 +12,9 @@ const RegisterForm = ({ onClose }) => {
         <input type="email" placeholder="Email" className="input" />
         <div className="button-container">
           <button className="button">Submit</button>
-          <button className="button" onClick={onClose}>
-            Close
-          </button>
+          <Link to="/" className="button">
+            Back
+          </Link>
         </div>
       </div>
     </div>

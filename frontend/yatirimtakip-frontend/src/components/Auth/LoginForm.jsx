@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./styles/LoginForm.css";
 
-const LoginForm = ({ onClose }) => {
+const LoginForm = () => {
   return (
     <div className="overlay">
       <div className="form-container">
@@ -10,9 +11,9 @@ const LoginForm = ({ onClose }) => {
         <input type="password" placeholder="Password" className="input" />
         <div className="button-container">
           <button className="button">Submit</button>
-          <button className="button" onClick={onClose}>
-            Close
-          </button>
+          <Link to="/" className="button">
+            Back
+          </Link>
         </div>
       </div>
     </div>
