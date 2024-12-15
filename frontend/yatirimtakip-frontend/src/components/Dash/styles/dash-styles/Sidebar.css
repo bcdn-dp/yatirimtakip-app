@@ -1,0 +1,65 @@
+/* File: styles/dash-styles/Sidebar.css */
+
+.sidebar {
+  width: 180px; /* Adjusted width to match button widths */
+  background-color: #1e1e2e; /* Dark mode background for the sidebar */
+  border: 1px solid #444; /* Subtle border for a clean look */
+  border-radius: 10px; /* Rounded corners */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px; /* Inner spacing for content alignment */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}
+
+.logo {
+  margin-bottom: 15px;
+}
+
+.logo-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.sidebar-link {
+  margin: 8px 0;
+  width: 100%; /* Button width matches the sidebar's width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #282846; /* Button dark background for dark mode */
+  border: 1px solid #3d3d5c; /* Border for buttons to match sidebar style */
+  color: #ffffff; /* White text for visibility */
+  text-decoration: none;
+  padding: 10px; /* Adjusted padding for better click area */
+  border-radius: 6px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.sidebar-link:hover {
+  background-color: #3d3d5c; /* Slightly lighter background for hover */
+  transform: scale(1.05); /* Subtle scaling on hover */
+}
+
+.sidebar-icon {
+  width: 25px;
+  height: 25px;
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background-color: #121212; /* Dark mode background for dashboard */
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e1e2e; /* Match sidebar's dark background */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  border-radius: 10px; /* Rounded corners for the main content */
+  color: #ffffff; /* White text for readability in dark mode */
+}

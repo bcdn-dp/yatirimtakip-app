@@ -1,0 +1,55 @@
+/* File: styles/dash-styles/Sidebar.css */
+
+.sidebar {
+  width: 150px; /* Slimmer sidebar */
+  background-color: #1e272e; /* Darker background color for better visibility */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px; /* Reduced padding */
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.logo-icon {
+  width: 60px; /* Smaller logo to fit the slimmer sidebar */
+  height: 60px;
+}
+
+.sidebar-link {
+  margin: 15px 0; /* Increased spacing for better visibility */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.sidebar-link:hover {
+  background-color: #485460; /* Subtle hover effect */
+}
+
+.sidebar-icon {
+  width: 24px; /* Adjusted icon size for the slimmer sidebar */
+  height: 24px;
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ecf0f1;
+}

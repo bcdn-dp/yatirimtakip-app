@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./styles/AboutPopup.css";
+import "./styles/auth-styles/AboutPopup.css";
+
 
 const AboutPopup = () => {
   return (

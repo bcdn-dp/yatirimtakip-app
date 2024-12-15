@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./styles/AuthPage.css";
+import "./styles/auth-styles/AuthPage.css";
+
 
 const AuthPage = () => {
   return (

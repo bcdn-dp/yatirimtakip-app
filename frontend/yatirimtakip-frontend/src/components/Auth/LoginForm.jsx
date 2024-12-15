@@ -1,8 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "./styles/LoginForm.css";
+import { useNavigate } from "react-router-dom";
+import "./styles/auth-styles/LoginForm.css";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    // Simulate successful login logic
+    navigate("/dashboard/home");
+  };
+
   return (
     <div className="overlay">
       <div className="form-container">
@@ -10,10 +17,12 @@ const LoginForm = () => {
         <input type="text" placeholder="Username" className="input" />
         <input type="password" placeholder="Password" className="input" />
         <div className="button-container">
-          <button className="button">Submit</button>
-          <Link to="/" className="button">
+          <button className="button" onClick={handleLogin}>
+            Submit
+          </button>
+          <button className="button" onClick={() => navigate("/")}>
             Back
-          </Link>
+          </button>
         </div>
       </div>
     </div>

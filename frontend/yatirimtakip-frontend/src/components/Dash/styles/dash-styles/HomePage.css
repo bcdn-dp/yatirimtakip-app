@@ -1,0 +1,28 @@
+.home-container {
+  display: flex;
+  flex-direction: column; /* Added to stack elements vertically */
+  align-items: center;
+  justify-content: flex-start; /* Align content closer to the top */
+  height: 100%;
+  padding-top: 40px; /* Add padding at the top */
+}
+
+.welcome-box {
+  text-align: center;
+  border: 2px solid #333333;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px; /* Optional: Add space between header and subtext */
+}
+
+.welcome-text {
+  margin: 0;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.sub-text {
+  margin: 10px 0 0;
+  font-size: 18px;
+  color: #555555;
+}
