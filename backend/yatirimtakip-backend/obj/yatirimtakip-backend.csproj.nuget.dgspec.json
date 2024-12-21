@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lonec\\Desktop\\Frequent Projects\\BIL387-Web Design\\yatirimtakip-app\\backend\\yatirimtakip-backend\\yatirimtakip-backend.csproj": {}
+    "c:\\Users\\lonec\\Desktop\\Frequent Projects\\BIL387-Web Design\\yatirimtakip-app\\backend\\yatirimtakip-backend\\yatirimtakip-backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lonec\\Desktop\\Frequent Projects\\BIL387-Web Design\\yatirimtakip-app\\backend\\yatirimtakip-backend\\yatirimtakip-backend.csproj": {
+    "c:\\Users\\lonec\\Desktop\\Frequent Projects\\BIL387-Web Design\\yatirimtakip-app\\backend\\yatirimtakip-backend\\yatirimtakip-backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lonec\\Desktop\\Frequent Projects\\BIL387-Web Design\\yatirimtakip-app\\backend\\yatirimtakip-backend\\yatirimtakip-backend.csproj",
+        "projectUniqueName": "c:\\Users\\lonec\\Desktop\\Frequent Projects\\BIL387-Web Design\\yatirimtakip-app\\backend\\yatirimtakip-backend\\yatirimtakip-backend.csproj",
         "projectName": "yatirimtakip-backend",
-        "projectPath": "C:\\Users\\lonec\\Desktop\\Frequent Projects\\BIL387-Web Design\\yatirimtakip-app\\backend\\yatirimtakip-backend\\yatirimtakip-backend.csproj",
+        "projectPath": "c:\\Users\\lonec\\Desktop\\Frequent Projects\\BIL387-Web Design\\yatirimtakip-app\\backend\\yatirimtakip-backend\\yatirimtakip-backend.csproj",
         "packagesPath": "C:\\Users\\lonec\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lonec\\Desktop\\Frequent Projects\\BIL387-Web Design\\yatirimtakip-app\\backend\\yatirimtakip-backend\\obj\\",
+        "outputPath": "c:\\Users\\lonec\\Desktop\\Frequent Projects\\BIL387-Web Design\\yatirimtakip-app\\backend\\yatirimtakip-backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lonec\\AppData\\Roaming\\NuGet\\NuGet.Config"
