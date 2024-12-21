@@ -9,6 +9,12 @@ using yatirimtakip_backend.Repositories;
 
 namespace yatirimtakip_backend.Controllers
 {
+    public class LoginRequest
+    {
+        public string Username { get; set; } = null!;
+        public string Password { get; set; } = null!;
+    }
+
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -46,31 +52,28 @@ namespace yatirimtakip_backend.Controllers
 
         
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] User loginRequest)
+        public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
-            // Validate username
-            var users = await _userRepository.FindAsync(u => u.Username == loginRequest.Username);
-            var user = users.FirstOrDefault();
+            // Check if username exists in the database
+            var user = (await _userRepository.FindAsync(u => u.Username == loginRequest.Username)).FirstOrDefault();
 
+            // Validate the username and password
             if (user == null || !BCrypt.Net.BCrypt.Verify(loginRequest.Password, user.Password))
             {
-                return Unauthorized("Invalid username or password.");
+                return Unauthorized(new { message = "Invalid username or password." });
             }
 
-            // Get the JWT secret from configuration
-            var secret = _configuration["Jwt:Secret"];
-            if (string.IsNullOrEmpty(secret))
-            {
-                return StatusCode(500, "JWT Secret is not configured.");
-            }
-
-            // Generate JWT
+            // Generate JWT Token
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(secret);
+            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"] ?? throw new InvalidOperationException("JWT Secret not configured"));
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.UserID.ToString()) }),
+                Subject = new ClaimsIdentity(new[]
+                {
+                    new Claim("id", user.UserID.ToString()),
+                    new Claim(ClaimTypes.Name, user.Username)
+                }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
@@ -80,6 +83,7 @@ namespace yatirimtakip_backend.Controllers
 
             return Ok(new { Token = tokenString });
         }
+
 
     }
 }

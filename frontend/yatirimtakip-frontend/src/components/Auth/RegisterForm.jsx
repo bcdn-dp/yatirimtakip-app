@@ -9,6 +9,7 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage("");
 
     // Client-side validation
     if (formData.username.length < 3 || formData.username.length > 15) {
@@ -25,12 +26,14 @@ const RegisterForm = () => {
     }
 
     try {
-      // Call the register API
+      console.log("Sending data to API:", formData);
       const result = await registerUser(formData);
-      setMessage(result); // Success message
-    } catch (err) {
-      setMessage(err); // Error message
-    }
+      console.log("API Response:", result);
+      setMessage(result);
+  } catch (err) {
+      console.error("Error during registration:", err);
+      setMessage(err);
+  }
   };
 
   return (
