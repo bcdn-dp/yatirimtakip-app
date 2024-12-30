@@ -25,6 +25,9 @@ namespace yatirimtakip_backend.Services
                 // Parse CSV file into a list of StockCsvModel objects
                 var stockCsvModels = csv.GetRecords<StockCsvModel>().ToList();
 
+                // Extract the symbol from the file name
+                var symbol = Path.GetFileNameWithoutExtension(filePath);
+
                 // Filter records for the year 2024 and remove duplicates
                 var filteredStocks = stockCsvModels
                     .Where(s => s.Date.Year == 2024)
@@ -35,13 +38,14 @@ namespace yatirimtakip_backend.Services
                 // Map StockCsvModel to Stock
                 var stocks = filteredStocks.Select(s => new Stock
                 {
-                    Date = DateTime.SpecifyKind(s.Date, DateTimeKind.Utc), // Ensure DateTime is in UTC
+                    Date = DateTime.SpecifyKind(s.Date, DateTimeKind.Utc),
                     Open = s.Open,
                     High = s.High,
                     Low = s.Low,
                     Close = s.Close,
                     AdjClose = s.AdjClose,
-                    Volume = s.Volume
+                    Volume = s.Volume,
+                    Symbol = symbol // Set the Symbol property
                 }).ToList();
 
                 // Check for existing records in the database
@@ -58,7 +62,8 @@ namespace yatirimtakip_backend.Services
                         e.Low == s.Low &&
                         e.Close == s.Close &&
                         e.AdjClose == s.AdjClose &&
-                        e.Volume == s.Volume))
+                        e.Volume == s.Volume &&
+                        e.Symbol == s.Symbol))
                     .ToList();
 
                 // Add new records to the database

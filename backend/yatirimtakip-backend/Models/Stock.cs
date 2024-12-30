@@ -10,6 +10,7 @@ namespace yatirimtakip_backend.Models
         public float Close { get; set; }    // Closing price
         public float AdjClose { get; set; } // Adjusted close price
         public float Volume { get; set; }   // Volume traded
+        public string Symbol { get; set; } = null!; // Symbol of the stock
 
         public ICollection<Investment> Investments { get; set; } = new List<Investment>(); // Navigation property
     }

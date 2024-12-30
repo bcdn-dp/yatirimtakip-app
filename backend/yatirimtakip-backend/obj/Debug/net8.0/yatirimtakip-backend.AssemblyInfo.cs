@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("yatirimtakip-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8aee54b3801dc38fd7abad86d556e2fde0517170")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db7ca30ed9b853a4632a441819b5398ea3cd4dab")]
 [assembly: System.Reflection.AssemblyProductAttribute("yatirimtakip-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("yatirimtakip-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

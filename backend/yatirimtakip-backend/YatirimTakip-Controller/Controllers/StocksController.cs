@@ -68,7 +68,7 @@ namespace yatirimtakip_backend.Controllers
                     if (!string.IsNullOrEmpty(sequenceName))
                     {
                         _logger.LogInformation($"Resetting sequence: {sequenceName}");
-                        await connection.ExecuteAsync($"ALTER SEQUENCE \"{sequenceName}\" RESTART WITH 1");
+                        await connection.ExecuteAsync($"ALTER SEQUENCE {sequenceName} RESTART WITH 1");
                     }
                     else
                     {
