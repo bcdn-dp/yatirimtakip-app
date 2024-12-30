@@ -27,17 +27,26 @@ namespace yatirimtakip_backend.Data
             modelBuilder.Entity<Investment>()
                 .HasOne(i => i.Stock)
                 .WithMany(s => s.Investments)
-                .HasForeignKey(i => i.Type)
-                .HasPrincipalKey(s => s.SName);
+                .HasForeignKey(i => i.StockId);
 
             // Stocks Table
             modelBuilder.Entity<Stock>()
-                .HasKey(s => s.StockID);
+                .HasKey(s => s.Id); // Primary Key
             modelBuilder.Entity<Stock>()
-                .HasMany(s => s.Investments)
-                .WithOne(i => i.Stock)
-                .HasForeignKey(i => i.Type)
-                .HasPrincipalKey(s => s.SName);
+                .Property(s => s.Date)
+                .IsRequired(); // Ensure Date is not null
+            modelBuilder.Entity<Stock>()
+                .Property(s => s.Open)
+                .HasPrecision(18, 2); // Floating-point precision for Open
+            modelBuilder.Entity<Stock>()
+                .Property(s => s.High)
+                .HasPrecision(18, 2); // Floating-point precision for High
+            modelBuilder.Entity<Stock>()
+                .Property(s => s.Low)
+                .HasPrecision(18, 2); // Floating-point precision for Low
+            modelBuilder.Entity<Stock>()
+                .Property(s => s.Close)
+                .HasPrecision(18, 2); // Floating-point precision for Close
         }
     }
 }

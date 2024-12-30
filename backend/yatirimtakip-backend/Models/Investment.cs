@@ -4,7 +4,7 @@ namespace yatirimtakip_backend.Models
     {
         public int InvestID { get; set; }
         public int UserID { get; set; } // Foreign key
-        public string Type { get; set; } = null!; // Matches stock.SName
+        public int StockId { get; set; } // Foreign key to Stock entity
         public float UnitPrice { get; set; }
         public int UnitAmount { get; set; }
 

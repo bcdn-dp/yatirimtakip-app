@@ -45,6 +45,11 @@ namespace yatirimtakip_backend.Repositories
             _dbSet.Remove(entity);
         }
 
+        public void DeleteRange(IEnumerable<T> entities) // Implement this method
+        {
+            _dbSet.RemoveRange(entities);
+        }
+
         public async Task SaveAsync()
         {
             await _context.SaveChangesAsync();

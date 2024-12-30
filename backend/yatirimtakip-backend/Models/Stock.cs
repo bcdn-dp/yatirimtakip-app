@@ -2,16 +2,15 @@ namespace yatirimtakip_backend.Models
 {
     public class Stock
     {
-        public int StockID { get; set; }
-        public string SName { get; set; } = null!; // Matches investments.Type
-        public float PriceLast { get; set; }
-        public float Difference { get; set; }
-        public float CloseLast { get; set; }
-        public float DailyLow { get; set; }
-        public float DailyHigh { get; set; }
-        public float Vol { get; set; }
-        public DateTime Time { get; set; }
+        public int Id { get; set; }
+        public DateTime Date { get; set; }   // Date of the stock record
+        public float Open { get; set; }     // Opening price
+        public float High { get; set; }     // Highest price of the day
+        public float Low { get; set; }      // Lowest price of the day
+        public float Close { get; set; }    // Closing price
+        public float AdjClose { get; set; } // Adjusted close price
+        public float Volume { get; set; }   // Volume traded
 
-        public ICollection<Investment> Investments { get; set; } = new List<Investment>();
+        public ICollection<Investment> Investments { get; set; } = new List<Investment>(); // Navigation property
     }
 }

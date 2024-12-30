@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
-
+using yatirimtakip_backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
-        policy.WithOrigins("http://localhost:3000") // Replace with your frontend's URL
+        policy.WithOrigins("http://localhost:3000")
               .AllowAnyHeader()
               .AllowAnyMethod());
 });
@@ -24,6 +24,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Add Generic Repository for DI
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+// Add CsvStockService for DI
+builder.Services.AddScoped<ICsvStockService, CsvStockService>();
+
+// Add logging
+builder.Services.AddLogging();
 
 // Retrieve JWT Secret from Configuration
 var jwtSecret = builder.Configuration["Jwt:Secret"];
@@ -51,11 +57,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "YatirimTakip API",
-        Version = "v1"
-    });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "YatirimTakip API", Version = "v1" });
 });
 
 var app = builder.Build();
@@ -67,7 +69,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "YatirimTakip API v1");
-        c.RoutePrefix = ""; // Serve Swagger at the root URL
     });
 }
 

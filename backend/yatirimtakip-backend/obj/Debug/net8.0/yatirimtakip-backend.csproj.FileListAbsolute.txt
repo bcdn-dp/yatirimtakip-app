@@ -143,3 +143,5 @@ C:\Users\lonec\Desktop\Frequent Projects\BIL387-Web Design\yatirimtakip-app\back
 C:\Users\lonec\Desktop\Frequent Projects\BIL387-Web Design\yatirimtakip-app\backend\yatirimtakip-backend\obj\Debug\net8.0\yatirimtakip-backend.pdb
 C:\Users\lonec\Desktop\Frequent Projects\BIL387-Web Design\yatirimtakip-app\backend\yatirimtakip-backend\obj\Debug\net8.0\yatirimtakip-backend.genruntimeconfig.cache
 C:\Users\lonec\Desktop\Frequent Projects\BIL387-Web Design\yatirimtakip-app\backend\yatirimtakip-backend\obj\Debug\net8.0\ref\yatirimtakip-backend.dll
+c:\Users\lonec\Desktop\Frequent Projects\BIL387-Web Design\yatirimtakip-app\backend\yatirimtakip-backend\bin\Debug\net8.0\CsvHelper.dll
+c:\Users\lonec\Desktop\Frequent Projects\BIL387-Web Design\yatirimtakip-app\backend\yatirimtakip-backend\bin\Debug\net8.0\Dapper.dll
