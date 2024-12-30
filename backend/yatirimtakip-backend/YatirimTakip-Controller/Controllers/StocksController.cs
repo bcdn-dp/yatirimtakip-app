@@ -36,6 +36,13 @@ namespace yatirimtakip_backend.Controllers
             return Ok(stocks);
         }
 
+        [HttpGet("by-symbol")]
+        public async Task<IActionResult> GetStocksBySymbol(string symbol)
+        {
+            var stocks = await _context.Stocks.Where(s => s.Symbol == symbol).ToListAsync();
+            return Ok(stocks);
+        }
+
         [HttpPost("import-csv")]
         public async Task<IActionResult> ImportCsv()
         {
