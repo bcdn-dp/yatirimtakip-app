@@ -1,6 +1,6 @@
 @yatirimtakip_backend_HostAddress = http://localhost:5235
 
-GET {{yatirimtakip_backend_HostAddress}}/weatherforecast/
+GET {{yatirimtakip_backend_HostAddress}}/api/stockmarket/daily?symbol=SPY
 Accept: application/json
 
 ###

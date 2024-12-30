@@ -25,19 +25,30 @@ namespace yatirimtakip_backend.Data
             modelBuilder.Entity<Investment>()
                 .HasKey(i => i.InvestID);
             modelBuilder.Entity<Investment>()
-                .HasOne(i => i.Stock)
-                .WithMany(s => s.Investments)
-                .HasForeignKey(i => i.Type)
-                .HasPrincipalKey(s => s.SName);
+                .HasOne(i => i.User)
+                .WithMany(u => u.Investments)
+                .HasForeignKey(i => i.UserID);
 
             // Stocks Table
             modelBuilder.Entity<Stock>()
                 .HasKey(s => s.StockID);
             modelBuilder.Entity<Stock>()
-                .HasMany(s => s.Investments)
-                .WithOne(i => i.Stock)
-                .HasForeignKey(i => i.Type)
-                .HasPrincipalKey(s => s.SName);
+                .Property(s => s.Open)
+                .HasColumnType("money");
+            modelBuilder.Entity<Stock>()
+                .Property(s => s.High)
+                .HasColumnType("money");
+            modelBuilder.Entity<Stock>()
+                .Property(s => s.Low)
+                .HasColumnType("money");
+            modelBuilder.Entity<Stock>()
+                .Property(s => s.Close)
+                .HasColumnType("money");
+            modelBuilder.Entity<Stock>()
+                .HasOne<Investment>()
+                .WithMany()
+                .HasForeignKey(s => s.SName)
+                .HasPrincipalKey(i => i.Type);
         }
     }
 }

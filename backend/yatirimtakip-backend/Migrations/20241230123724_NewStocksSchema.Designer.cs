@@ -12,8 +12,8 @@ using yatirimtakip_backend.Data;
 namespace yatirimtakip_backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241219173750_UpdateDatabaseSchema")]
-    partial class UpdateDatabaseSchema
+    [Migration("20241230123724_NewStocksSchema")]
+    partial class NewStocksSchema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace yatirimtakip_backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("InvestID"));
 
+                    b.Property<int>("StockID")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
@@ -48,7 +51,7 @@ namespace yatirimtakip_backend.Migrations
 
                     b.HasKey("InvestID");
 
-                    b.HasIndex("Type");
+                    b.HasIndex("StockID");
 
                     b.HasIndex("UserID");
 
@@ -63,32 +66,35 @@ namespace yatirimtakip_backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("StockID"));
 
-                    b.Property<float>("CloseLast")
-                        .HasColumnType("real");
+                    b.Property<decimal>("Close")
+                        .HasColumnType("money");
 
-                    b.Property<float>("DailyHigh")
-                        .HasColumnType("real");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<float>("DailyLow")
-                        .HasColumnType("real");
+                    b.Property<decimal>("High")
+                        .HasColumnType("money");
 
-                    b.Property<float>("Difference")
-                        .HasColumnType("real");
+                    b.Property<decimal>("Low")
+                        .HasColumnType("money");
 
-                    b.Property<float>("PriceLast")
-                        .HasColumnType("real");
+                    b.Property<decimal>("Open")
+                        .HasColumnType("money");
 
                     b.Property<string>("SName")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<string>("Symbol")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<float>("Vol")
-                        .HasColumnType("real");
+                    b.Property<double>("Volume")
+                        .HasColumnType("double precision");
 
                     b.HasKey("StockID");
+
+                    b.HasIndex("SName");
 
                     b.ToTable("Stocks");
                 });
@@ -121,9 +127,8 @@ namespace yatirimtakip_backend.Migrations
             modelBuilder.Entity("yatirimtakip_backend.Models.Investment", b =>
                 {
                     b.HasOne("yatirimtakip_backend.Models.Stock", "Stock")
-                        .WithMany("Investments")
-                        .HasForeignKey("Type")
-                        .HasPrincipalKey("SName")
+                        .WithMany()
+                        .HasForeignKey("StockID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -140,7 +145,12 @@ namespace yatirimtakip_backend.Migrations
 
             modelBuilder.Entity("yatirimtakip_backend.Models.Stock", b =>
                 {
-                    b.Navigation("Investments");
+                    b.HasOne("yatirimtakip_backend.Models.Investment", null)
+                        .WithMany()
+                        .HasForeignKey("SName")
+                        .HasPrincipalKey("Type")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("yatirimtakip_backend.Models.User", b =>
