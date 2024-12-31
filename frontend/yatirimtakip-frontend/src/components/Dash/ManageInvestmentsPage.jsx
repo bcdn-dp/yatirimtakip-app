@@ -33,12 +33,10 @@ const ManageInvestmentsPage = () => {
   }, [selectedType]);
 
   const handleAddInvestment = () => {
-    const userId = 1; // Replace with actual user ID
     const investment = {
-      UserID: userId,
-      StockID: selectedType,
-      UnitPrice: unitPrice,
-      UnitAmount: unitAmount
+      UnitAmount: unitAmount,
+      Type: selectedType,
+      UnitPrice: unitPrice
     };
 
     axios.post("https://localhost:7041/api/investments", investment)

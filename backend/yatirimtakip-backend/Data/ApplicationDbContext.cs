@@ -25,6 +25,9 @@ namespace yatirimtakip_backend.Data
             modelBuilder.Entity<Investment>()
                 .HasKey(i => i.InvestID);
             modelBuilder.Entity<Investment>()
+                .Property(i => i.InvestID)
+                .ValueGeneratedOnAdd(); // Ensure InvestID is auto-incremented
+            modelBuilder.Entity<Investment>()
                 .HasOne(i => i.Stock)
                 .WithMany(s => s.Investments)
                 .HasForeignKey(i => i.StockID);
