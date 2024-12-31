@@ -8,7 +8,6 @@ namespace yatirimtakip_backend.Models
         public float High { get; set; }     // Highest price of the day
         public float Low { get; set; }      // Lowest price of the day
         public float Close { get; set; }    // Closing price
-        public float AdjClose { get; set; } // Adjusted close price
         public float Volume { get; set; }   // Volume traded
         public string Symbol { get; set; } = null!; // Symbol of the stock
 

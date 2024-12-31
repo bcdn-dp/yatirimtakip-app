@@ -31,7 +31,7 @@ namespace yatirimtakip_backend.Services
                 // Filter records for the year 2024 and remove duplicates
                 var filteredStocks = stockCsvModels
                     .Where(s => s.Date.Year == 2024)
-                    .GroupBy(s => new { s.Date, s.Open, s.High, s.Low, s.Close, s.AdjClose, s.Volume })
+                    .GroupBy(s => new { s.Date, s.Open, s.High, s.Low, s.Close, s.Volume })
                     .Select(g => g.First())
                     .ToList();
 
@@ -43,7 +43,6 @@ namespace yatirimtakip_backend.Services
                     High = s.High,
                     Low = s.Low,
                     Close = s.Close,
-                    AdjClose = s.AdjClose,
                     Volume = s.Volume,
                     Symbol = symbol // Set the Symbol property
                 }).ToList();
@@ -61,7 +60,6 @@ namespace yatirimtakip_backend.Services
                         e.High == s.High &&
                         e.Low == s.Low &&
                         e.Close == s.Close &&
-                        e.AdjClose == s.AdjClose &&
                         e.Volume == s.Volume &&
                         e.Symbol == s.Symbol))
                     .ToList();

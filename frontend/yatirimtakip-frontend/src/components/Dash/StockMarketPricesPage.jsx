@@ -35,7 +35,7 @@ const StockMarketPricesPage = () => {
     return (
         <div className="container">
             <h1>Stock Market Prices</h1>
-            <label htmlFor="symbol-select">Filter by Stock Name:</label>
+            <label htmlFor="symbol-select">Filter by Symbol:</label>
             <select
                 id="symbol-select"
                 value={selectedSymbol}
@@ -55,9 +55,8 @@ const StockMarketPricesPage = () => {
                             <th>High</th>
                             <th>Low</th>
                             <th>Close</th>
-                            <th>Adj Close</th>
                             <th>Volume</th>
-                            <th>Stock Name</th>
+                            <th>Symbol</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,7 +67,6 @@ const StockMarketPricesPage = () => {
                                 <td>{stock.high}</td>
                                 <td>{stock.low}</td>
                                 <td>{stock.close}</td>
-                                <td>{stock.adjClose}</td>
                                 <td>{stock.volume}</td>
                                 <td>{stock.symbol}</td>
                             </tr>

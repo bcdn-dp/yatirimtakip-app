@@ -46,14 +46,20 @@ namespace yatirimtakip_backend.Controllers
         [HttpPost("import-csv")]
         public async Task<IActionResult> ImportCsv()
         {
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "stock-file", "IBM.csv");
+            string[] filePaths = {
+                Path.Combine(Directory.GetCurrentDirectory(), "stock-file", "IBM.csv"),
+                Path.Combine(Directory.GetCurrentDirectory(), "stock-file", "BIST.csv")
+            };
 
-            if (!System.IO.File.Exists(filePath))
+            foreach (var filePath in filePaths)
             {
-                return NotFound("CSV file not found.");
-            }
+                if (!System.IO.File.Exists(filePath))
+                {
+                    return NotFound($"CSV file not found: {filePath}");
+                }
 
-            await _csvStockService.ImportCsvAsync(filePath);
+                await _csvStockService.ImportCsvAsync(filePath);
+            }
 
             return Ok("CSV data imported successfully.");
         }
