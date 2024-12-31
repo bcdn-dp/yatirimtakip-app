@@ -27,7 +27,7 @@ namespace yatirimtakip_backend.Data
             modelBuilder.Entity<Investment>()
                 .HasOne(i => i.Stock)
                 .WithMany(s => s.Investments)
-                .HasForeignKey(i => i.StockId);
+                .HasForeignKey(i => i.StockID);
 
             // Stocks Table
             modelBuilder.Entity<Stock>()
@@ -44,9 +44,6 @@ namespace yatirimtakip_backend.Data
             modelBuilder.Entity<Stock>()
                 .Property(s => s.Low)
                 .HasPrecision(18, 2); // Floating-point precision for Low
-            modelBuilder.Entity<Stock>()
-                .Property(s => s.Close)
-                .HasPrecision(18, 2); // Floating-point precision for Close
         }
     }
 }

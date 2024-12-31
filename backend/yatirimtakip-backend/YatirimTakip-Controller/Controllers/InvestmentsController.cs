@@ -19,7 +19,16 @@ namespace yatirimtakip_backend.Controllers
         public async Task<IActionResult> GetAllInvestments()
         {
             var investments = await _repository.GetAllAsync();
-            return Ok(investments);
+            var investmentDtos = investments.Select(i => new InvestmentDto
+            {
+                InvestID = i.InvestID,
+                UserID = i.UserID,
+                StockID = i.StockID,
+                UnitPrice = i.UnitPrice,
+                UnitAmount = i.UnitAmount
+            }).ToList();
+
+            return Ok(investmentDtos);
         }
     }
 }
