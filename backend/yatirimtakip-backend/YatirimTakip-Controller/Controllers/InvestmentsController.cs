@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using yatirimtakip_backend.DTOs;
 using yatirimtakip_backend.Models;
 using yatirimtakip_backend.Repositories;
 
@@ -29,6 +30,23 @@ namespace yatirimtakip_backend.Controllers
             }).ToList();
 
             return Ok(investmentDtos);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateInvestment([FromBody] CreateInvestmentDto createInvestmentDto)
+        {
+            var investment = new Investment
+            {
+                UserID = createInvestmentDto.UserID,
+                StockID = createInvestmentDto.StockID,
+                UnitPrice = createInvestmentDto.UnitPrice,
+                UnitAmount = createInvestmentDto.UnitAmount
+            };
+
+            await _repository.AddAsync(investment);
+            await _repository.SaveAsync();
+
+            return CreatedAtAction(nameof(GetAllInvestments), new { id = investment.InvestID }, investment);
         }
     }
 }
