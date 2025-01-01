@@ -8,6 +8,9 @@ const ManageInvestmentsPage = () => {
   const [unitAmount, setUnitAmount] = useState(0);
   const [unitPrice, setUnitPrice] = useState(0);
   const [stockTypes, setStockTypes] = useState([]);
+  const [investments, setInvestments] = useState([]);
+  const [selectedInvestment, setSelectedInvestment] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     // Fetch all stocks
@@ -32,6 +35,16 @@ const ManageInvestmentsPage = () => {
     }
   }, [selectedType]);
 
+  useEffect(() => {
+    // Fetch investments for the logged-in user
+    const userId = localStorage.getItem("userId"); // Assuming userId is stored in localStorage
+    axios.get(`https://localhost:7041/api/investments/user/${userId}`)
+      .then(response => {
+        setInvestments(response.data);
+      })
+      .catch(error => console.error("Error fetching investments:", error));
+  }, []);
+
   const handleAddInvestment = () => {
     const investment = {
       UnitAmount: unitAmount,
@@ -44,6 +57,17 @@ const ManageInvestmentsPage = () => {
         alert("Investment added successfully!");
       })
       .catch(error => console.error("Error adding investment:", error));
+  };
+
+  const handleRemoveInvestment = () => {
+    const userId = localStorage.getItem("userId"); // Assuming userId is stored in localStorage
+    axios.delete(`https://localhost:7041/api/investments/${userId}/${selectedInvestment}`)
+      .then(response => {
+        setMessage("Investment deleted successfully!");
+        // Remove the deleted investment from the state
+        setInvestments(investments.filter(inv => inv.InvestID !== selectedInvestment));
+      })
+      .catch(error => console.error("Error deleting investment:", error));
   };
 
   return (
@@ -82,7 +106,21 @@ const ManageInvestmentsPage = () => {
       </div>
       <div className="remove-investment">
         <h2>Remove Investment</h2>
-        {/* Implement Remove Investment functionality here */}
+        <label htmlFor="investment-select">Select Investment:</label>
+        <select
+          id="investment-select"
+          value={selectedInvestment}
+          onChange={e => setSelectedInvestment(e.target.value)}
+        >
+          <option value="">Select Investment</option>
+          {investments.map(investment => (
+            <option key={investment.InvestID} value={investment.InvestID}>
+              {investment.InvestID} - {investment.Type}
+            </option>
+          ))}
+        </select>
+        <button onClick={handleRemoveInvestment}>Remove Investment</button>
+        {message && <p>{message}</p>}
       </div>
     </div>
   );

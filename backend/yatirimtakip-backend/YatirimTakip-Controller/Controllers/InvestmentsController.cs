@@ -39,6 +39,22 @@ namespace yatirimtakip_backend.Controllers
             return Ok(investmentDtos);
         }
 
+        [HttpGet("user/{userId:int}")]
+        public async Task<IActionResult> GetInvestmentsByUser(int userId)
+        {
+            var investments = await _repository.FindAsync(i => i.UserID == userId);
+            var investmentDtos = investments.Select(i => new InvestmentDto
+            {
+                InvestID = i.InvestID,
+                UserID = i.UserID,
+                StockID = i.StockID,
+                UnitPrice = i.UnitPrice,
+                UnitAmount = i.UnitAmount
+            }).ToList();
+
+            return Ok(investmentDtos);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateInvestment([FromBody] CreateInvestmentDto createInvestmentDto)
         {
@@ -64,6 +80,21 @@ namespace yatirimtakip_backend.Controllers
             await _repository.SaveAsync();
 
             return CreatedAtAction(nameof(GetAllInvestments), new { id = investment.InvestID }, investment);
+        }
+
+        [HttpDelete("{userId:int}/{investId:int}")]
+        public async Task<IActionResult> DeleteInvestment(int userId, int investId)
+        {
+            var investment = await _repository.FindAsync(i => i.UserID == userId && i.InvestID == investId);
+            if (investment == null || !investment.Any())
+            {
+                return NotFound("Investment not found.");
+            }
+
+            _repository.Delete(investment.First());
+            await _repository.SaveAsync();
+
+            return Ok(new { message = "Investment deleted successfully", investId });
         }
 
         private async Task ResetInvestIDSequence()
