@@ -70,9 +70,7 @@ const RegisterForm = () => {
             <button className="button" type="submit">
               Submit
             </button>
-            <Link to="/" className="button">
-              Back
-            </Link>
+            <Link to="/" className="button">Back</Link>
           </div>
         </form>
         <p>{message}</p>

@@ -7,7 +7,7 @@ const AuthPage = () => {
   return (
     <div className="auth-container">
       <div className="auth-title-box">
-        <h1 className="auth-title">Yatirim Takip</h1>
+        <h1 className="auth-title">Yatırım Takip</h1>
       </div>
       <div className="auth-button-container">
         <Link to="/login" className="auth-button">

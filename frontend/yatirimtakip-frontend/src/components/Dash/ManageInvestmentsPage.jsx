@@ -3,7 +3,6 @@ import axios from "axios";
 import "./styles/dash-styles/ManageInvestmentsPage.css";
 
 const ManageInvestmentsPage = () => {
-  const [stocks, setStocks] = useState([]);
   const [selectedType, setSelectedType] = useState("");
   const [unitAmount, setUnitAmount] = useState(0);
   const [unitPrice, setUnitPrice] = useState(0);
@@ -17,7 +16,6 @@ const ManageInvestmentsPage = () => {
     // Fetch all stocks
     axios.get("https://localhost:7041/api/stocks")
       .then(response => {
-        setStocks(response.data);
         const uniqueTypes = [...new Set(response.data.map(stock => stock.symbol))];
         setStockTypes(uniqueTypes);
       })
@@ -89,52 +87,54 @@ const ManageInvestmentsPage = () => {
       <div className="welcome-box">
         <h1 className="welcome-text">Manage Investments</h1>
       </div>
-      <div className="add-investment">
-        <h2>Add Investment</h2>
-        <label htmlFor="type-select">Stock Type:</label>
-        <select
-          id="type-select"
-          value={selectedType}
-          onChange={e => setSelectedType(e.target.value)}
-        >
-          <option value="">Select Type</option>
-          {stockTypes.map(type => (
-            <option key={type} value={type}>{type}</option>
-          ))}
-        </select>
-        <label htmlFor="unit-amount">Unit Amount:</label>
-        <input
-          type="number"
-          id="unit-amount"
-          value={unitAmount}
-          onChange={e => setUnitAmount(e.target.value)}
-        />
-        <label htmlFor="unit-price">Unit Price:</label>
-        <input
-          type="text"
-          id="unit-price"
-          value={unitPrice}
-          readOnly
-        />
-        <button onClick={handleAddInvestment}>Add Investment</button>
-      </div>
-      <div className="remove-investment">
-        <h2>Remove Investment</h2>
-        <label htmlFor="investment-select">Select Investment:</label>
-        <select
-          id="investment-select"
-          value={selectedInvestment}
-          onChange={e => setSelectedInvestment(e.target.value)}
-        >
-          <option value="">Select Investment</option>
-          {investments.map(investment => (
-            <option key={investment.investID} value={investment.investID}>
-              {investment.investID}
-            </option>
-          ))}
-        </select>
-        <button onClick={handleRemoveInvestment}>Remove Investment</button>
-        {message && <p>{message}</p>}
+      <div className="investment-sections">
+        <div className="add-investment">
+          <h2>Add Investment</h2>
+          <label htmlFor="type-select">Stock Type:</label>
+          <select
+            id="type-select"
+            value={selectedType}
+            onChange={e => setSelectedType(e.target.value)}
+          >
+            <option value="">Select Type</option>
+            {stockTypes.map(type => (
+              <option key={type} value={type}>{type}</option>
+            ))}
+          </select>
+          <label htmlFor="unit-amount">Unit Amount:</label>
+          <input
+            type="number"
+            id="unit-amount"
+            value={unitAmount}
+            onChange={e => setUnitAmount(e.target.value)}
+          />
+          <label htmlFor="unit-price">Unit Price:</label>
+          <input
+            type="text"
+            id="unit-price"
+            value={unitPrice}
+            readOnly
+          />
+          <button onClick={handleAddInvestment}>Add Investment</button>
+        </div>
+        <div className="remove-investment">
+          <h2>Remove Investment</h2>
+          <label htmlFor="investment-select">Select Investment:</label>
+          <select
+            id="investment-select"
+            value={selectedInvestment}
+            onChange={e => setSelectedInvestment(e.target.value)}
+          >
+            <option value="">Select Investment</option>
+            {investments.map(investment => (
+              <option key={investment.investID} value={investment.investID}>
+                {investment.investID}
+              </option>
+            ))}
+          </select>
+          <button onClick={handleRemoveInvestment}>Remove Investment</button>
+          {message && <p>{message}</p>}
+        </div>
       </div>
     </div>
   );
