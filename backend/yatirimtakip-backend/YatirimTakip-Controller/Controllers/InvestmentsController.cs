@@ -82,10 +82,10 @@ namespace yatirimtakip_backend.Controllers
             return CreatedAtAction(nameof(GetAllInvestments), new { id = investment.InvestID }, investment);
         }
 
-        [HttpDelete("{userId:int}/{investId:int}")]
-        public async Task<IActionResult> DeleteInvestment(int userId, int investId)
+        [HttpDelete("{investId:int}")]
+        public async Task<IActionResult> DeleteInvestment(int investId)
         {
-            var investment = await _repository.FindAsync(i => i.UserID == userId && i.InvestID == investId);
+            var investment = await _repository.FindAsync(i => i.InvestID == investId);
             if (investment == null || !investment.Any())
             {
                 return NotFound("Investment not found.");

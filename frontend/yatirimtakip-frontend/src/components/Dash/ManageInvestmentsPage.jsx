@@ -65,13 +65,23 @@ const ManageInvestmentsPage = () => {
   };
 
   const handleRemoveInvestment = () => {
+    if (!selectedInvestment) {
+      setMessage("Please select an investment to remove.");
+      return;
+    }
+
+    console.log(`Deleting investment with ID: ${selectedInvestment}`);
+
     axios.delete(`https://localhost:7041/api/investments/${selectedInvestment}`)
       .then(response => {
         setMessage("Investment deleted successfully!");
         // Remove the deleted investment from the state
-        setInvestments(investments.filter(inv => inv.InvestID !== selectedInvestment));
+        setInvestments(investments.filter(inv => inv.investID !== selectedInvestment));
       })
-      .catch(error => console.error("Error deleting investment:", error));
+      .catch(error => {
+        console.error("Error deleting investment:", error);
+        setMessage(`Error deleting investment: ${error.response ? error.response.data : error.message}`);
+      });
   };
 
   return (
@@ -118,8 +128,8 @@ const ManageInvestmentsPage = () => {
         >
           <option value="">Select Investment</option>
           {investments.map(investment => (
-            <option key={investment.InvestID} value={investment.InvestID}>
-              {investment.InvestID}
+            <option key={investment.investID} value={investment.investID}>
+              {investment.investID}
             </option>
           ))}
         </select>
