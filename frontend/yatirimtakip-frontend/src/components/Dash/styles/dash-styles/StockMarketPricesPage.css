@@ -33,9 +33,9 @@ th {
 }
 
 tr:nth-child(even) {
-  background-color: #000000; /* Lighter background for even rows */
+  background-color: #747474; /* Lighter background for even rows */
 }
 
 tr:hover {
-  background-color: #000000; /* Highlight row on hover */
+  background-color: #00ccff; /* Highlight row on hover */
 }

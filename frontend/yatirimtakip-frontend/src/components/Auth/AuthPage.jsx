@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./styles/auth-styles/AuthPage.css";
 
-
 const AuthPage = () => {
   return (
     <div className="auth-container">
@@ -20,6 +19,11 @@ const AuthPage = () => {
       <div className="auth-about-container">
         <Link to="/about" className="auth-about-button">
           About
+        </Link>
+      </div>
+      <div className="auth-admin-container">
+        <Link to="/admin" className="auth-admin-button">
+          Admin
         </Link>
       </div>
     </div>
