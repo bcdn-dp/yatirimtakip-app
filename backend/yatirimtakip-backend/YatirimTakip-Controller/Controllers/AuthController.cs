@@ -47,10 +47,9 @@ namespace yatirimtakip_backend.Controllers
             await _userRepository.AddAsync(user);
             await _userRepository.SaveAsync();
 
-            return Ok("User registered successfully.");
+            return Ok(new { message = "User registered successfully.", userId = user.UserID });
         }
 
-        
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
@@ -81,9 +80,7 @@ namespace yatirimtakip_backend.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
 
-            return Ok(new { Token = tokenString });
+            return Ok(new { token = tokenString, userId = user.UserID });
         }
-
-
     }
 }

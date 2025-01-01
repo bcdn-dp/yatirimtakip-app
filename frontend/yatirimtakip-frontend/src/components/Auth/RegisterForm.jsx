@@ -27,13 +27,14 @@ const RegisterForm = () => {
 
     try {
       console.log("Sending data to API:", formData);
-      const result = await registerUser(formData);
-      console.log("API Response:", result);
-      setMessage(result);
-  } catch (err) {
+      const response = await registerUser(formData);
+      console.log("API Response:", response);
+      localStorage.setItem("userId", response.userId); // Store the User ID
+      setMessage("Registration successful!");
+    } catch (err) {
       console.error("Error during registration:", err);
       setMessage(err);
-  }
+    }
   };
 
   return (

@@ -13,8 +13,9 @@ const LoginForm = () => {
         setMessage(""); // Clear previous messages
 
         try {
-            const token = await loginUser(formData); // Call the login API
-            localStorage.setItem("jwtToken", token); // Store the JWT token
+            const response = await loginUser(formData); // Call the login API
+            localStorage.setItem("jwtToken", response.token); // Store the JWT token
+            localStorage.setItem("userId", response.userId); // Store the User ID
             setMessage("Login successful!"); // Display success message
             navigate("/dashboard/home"); // Redirect to dashboard
         } catch (err) {
@@ -22,14 +23,10 @@ const LoginForm = () => {
             console.error("Error during login:", err.response ? err.response.data : err.message);
 
             // Check if the error response contains a meaningful message
-            if (err.response && err.response.data)
-            {
+            if (err.response && err.response.data) {
                 const errorMessage = err.response.data.message || "Login failed. Please try again.";
                 setMessage(errorMessage); // Set a user-friendly error message
-            }
-            else
-            {
-                console.error("Error during login:", err.response ? err.response.data : err.message);
+            } else {
                 setMessage("An unexpected error occurred. Please try again.");
             }
         }

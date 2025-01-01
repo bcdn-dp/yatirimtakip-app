@@ -11,6 +11,7 @@ const ManageInvestmentsPage = () => {
   const [investments, setInvestments] = useState([]);
   const [selectedInvestment, setSelectedInvestment] = useState("");
   const [message, setMessage] = useState("");
+  const [selectedStockId, setSelectedStockId] = useState(null);
 
   useEffect(() => {
     // Fetch all stocks
@@ -25,20 +26,21 @@ const ManageInvestmentsPage = () => {
 
   useEffect(() => {
     if (selectedType) {
-      // Fetch the most up-to-date close price for the selected stock type
+      // Fetch the most up-to-date stock data for the selected type
       axios.get(`https://localhost:7041/api/stocks/by-symbol?symbol=${selectedType}`)
         .then(response => {
-          const latestStock = response.data[0]; // Assuming the latest stock is the first in the array
+          const sortedStocks = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
+          const latestStock = sortedStocks[0];
           setUnitPrice(latestStock.close);
+          setSelectedStockId(latestStock.id);
         })
         .catch(error => console.error("Error fetching stock price:", error));
     }
   }, [selectedType]);
 
   useEffect(() => {
-    // Fetch investments for the logged-in user
-    const userId = localStorage.getItem("userId"); // Assuming userId is stored in localStorage
-    axios.get(`https://localhost:7041/api/investments/user/${userId}`)
+    // Fetch all investments
+    axios.get("https://localhost:7041/api/investments")
       .then(response => {
         setInvestments(response.data);
       })
@@ -47,21 +49,23 @@ const ManageInvestmentsPage = () => {
 
   const handleAddInvestment = () => {
     const investment = {
+      UserID: localStorage.getItem("userId"), // Assuming userId is stored in localStorage
+      StockID: selectedStockId,
       UnitAmount: unitAmount,
-      Type: selectedType,
-      UnitPrice: unitPrice
+      UnitPrice: unitPrice,
+      Type: selectedType
     };
 
     axios.post("https://localhost:7041/api/investments", investment)
       .then(response => {
         alert("Investment added successfully!");
+        setInvestments([...investments, response.data]);
       })
       .catch(error => console.error("Error adding investment:", error));
   };
 
   const handleRemoveInvestment = () => {
-    const userId = localStorage.getItem("userId"); // Assuming userId is stored in localStorage
-    axios.delete(`https://localhost:7041/api/investments/${userId}/${selectedInvestment}`)
+    axios.delete(`https://localhost:7041/api/investments/${selectedInvestment}`)
       .then(response => {
         setMessage("Investment deleted successfully!");
         // Remove the deleted investment from the state
@@ -115,7 +119,7 @@ const ManageInvestmentsPage = () => {
           <option value="">Select Investment</option>
           {investments.map(investment => (
             <option key={investment.InvestID} value={investment.InvestID}>
-              {investment.InvestID} - {investment.Type}
+              {investment.InvestID}
             </option>
           ))}
         </select>

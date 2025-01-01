@@ -12,19 +12,15 @@ export const registerUser = async (userData) => {
   }
 };
 
-
 // Login API
 export const loginUser = async (loginData) => {
   try {
       console.log("Sending login request:", loginData);
       const response = await axios.post(`${API_BASE_URL}/auth/login`, loginData);
       console.log("Login API Response:", response.data);
-      return response.data.Token;
+      return response.data; // Return the entire response data
   } catch (error) {
       console.error("Login API Error:", error.response?.data || error.message);
       throw error.response?.data || "An unexpected error occurred. Please try again.";
   }
 };
-
-
-
