@@ -45,7 +45,7 @@ namespace yatirimtakip_backend.Repositories
             _dbSet.Remove(entity);
         }
 
-        public void DeleteRange(IEnumerable<T> entities) // Implement this method
+        public void DeleteRange(IEnumerable<T> entities)
         {
             _dbSet.RemoveRange(entities);
         }

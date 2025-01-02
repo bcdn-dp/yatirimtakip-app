@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xjTp+O4WG08=",
+  "dgSpecHash": "JohiGu9tIMM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\lonec\\Desktop\\Frequent Projects\\BIL387-Web Design\\yatirimtakip-app\\backend\\yatirimtakip-backend\\yatirimtakip-backend.csproj",
+  "projectFilePath": "c:\\Users\\lonec\\Desktop\\Frequent Projects\\BIL387-Web Design\\yatirimtakip-app\\backend\\yatirimtakip-backend\\yatirimtakip-backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lonec\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\lonec\\.nuget\\packages\\csvhelper\\33.0.1\\csvhelper.33.0.1.nupkg.sha512",
@@ -66,5 +66,12 @@
     "C:\\Users\\lonec\\.nuget\\packages\\system.text.json\\9.0.0\\system.text.json.9.0.0.nupkg.sha512",
     "C:\\Users\\lonec\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Paket güvenlik açığı verileri alınırken hata oluştu: https://api.nuget.org/v3/index.json kaynağı için hizmet dizini yüklenemiyor."
+    }
+  ]
 }

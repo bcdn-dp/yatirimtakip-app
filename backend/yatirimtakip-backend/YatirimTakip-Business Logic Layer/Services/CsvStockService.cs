@@ -44,7 +44,7 @@ namespace yatirimtakip_backend.Services
                     Low = s.Low,
                     Close = s.Close,
                     Volume = s.Volume,
-                    Symbol = symbol // Set the Symbol property
+                    Symbol = symbol
                 }).ToList();
 
                 // Check for existing records in the database
@@ -70,7 +70,7 @@ namespace yatirimtakip_backend.Services
             }
             catch (Exception ex)
             {
-                // Handle errors (e.g., log them)
+                
                 throw new Exception("Error importing CSV data", ex);
             }
         }

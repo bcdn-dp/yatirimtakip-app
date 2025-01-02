@@ -10,7 +10,7 @@ namespace yatirimtakip_backend.Repositories
         Task AddAsync(T entity);
         void Update(T entity);
         void Delete(T entity);
-        void DeleteRange(IEnumerable<T> entities); // Add this method
+        void DeleteRange(IEnumerable<T> entities);
         Task SaveAsync();
     }
 }

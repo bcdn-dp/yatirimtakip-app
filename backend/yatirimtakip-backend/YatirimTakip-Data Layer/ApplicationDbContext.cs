@@ -34,19 +34,19 @@ namespace yatirimtakip_backend.Data
 
             // Stocks Table
             modelBuilder.Entity<Stock>()
-                .HasKey(s => s.Id); // Primary Key
+                .HasKey(s => s.Id);
             modelBuilder.Entity<Stock>()
                 .Property(s => s.Date)
-                .IsRequired(); // Ensure Date is not null
+                .IsRequired();
             modelBuilder.Entity<Stock>()
                 .Property(s => s.Open)
-                .HasPrecision(18, 2); // Floating-point precision for Open
+                .HasPrecision(18, 2);
             modelBuilder.Entity<Stock>()
                 .Property(s => s.High)
-                .HasPrecision(18, 2); // Floating-point precision for High
+                .HasPrecision(18, 2);
             modelBuilder.Entity<Stock>()
                 .Property(s => s.Low)
-                .HasPrecision(18, 2); // Floating-point precision for Low
+                .HasPrecision(18, 2);
         }
     }
 }
