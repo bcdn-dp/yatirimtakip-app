@@ -7,7 +7,7 @@ const AboutPopup = () => {
   return (
     <div className="overlay">
       <div className="popup">
-        <p className="text">Made by X</p>
+        <p className="text">Made by 22196375</p>
         <Link to="/" className="close-button">
           Back
         </Link>

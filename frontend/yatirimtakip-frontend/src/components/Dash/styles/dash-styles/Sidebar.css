@@ -2,7 +2,7 @@
 
 .sidebar {
   width: 180px; /* Adjusted width to match button widths */
-  background-color: #1e1e2e; /* Dark mode background for the sidebar */
+  background-color: #076134; /* Dark mode background for the sidebar */
   border: 1px solid #444; /* Subtle border for a clean look */
   border-radius: 10px; /* Rounded corners */
   display: flex;
@@ -27,7 +27,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #282846; /* Button dark background for dark mode */
+  background-color: #59597a; /* Button dark background for dark mode */
   border: 1px solid #3d3d5c; /* Border for buttons to match sidebar style */
   color: #ffffff; /* White text for visibility */
   text-decoration: none;

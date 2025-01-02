@@ -51,5 +51,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ecf0f1;
+  background: linear-gradient(to top, #a8e063, #2a5815); /* Gradient from light green to dark green */
 }

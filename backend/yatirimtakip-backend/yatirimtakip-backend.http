@@ -1,0 +1,6 @@
+@yatirimtakip_backend_HostAddress = http://localhost:5235
+
+GET {{yatirimtakip_backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
